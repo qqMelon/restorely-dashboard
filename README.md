@@ -1,7 +1,6 @@
 # Restorely Dashboard
 
 ### Waited data from API
-
 ```json
 [
   {
@@ -20,4 +19,16 @@
     }
   }
 ]
+```
+
+### Onboarding database
+```psql
+UI (Vue)
+  │
+  ▼
+POST /databases
+  │
+  ├─ validate input
+  ├─ test connection (ping DB)
+  └─ insert database
 ```

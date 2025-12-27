@@ -4,11 +4,15 @@ import { onMounted, ref } from "vue";
 import DatabaseCard from "./../components/DatabaseCard.vue";
 import EmptyState from "./../components/EmptyState.vue";
 
+import AddDatabase from "./../components/AddDatabase.vue";
+
 const databases = ref([]);
 
 onMounted(async () => {
   const res = await fetch("http://localhost:8080/databases");
   databases.value = await res.json();
+
+  console.log(databases.value);
 });
 </script>
 
@@ -24,6 +28,10 @@ onMounted(async () => {
       <div class="grid md:grid-cols-2 gap-6">
         <DatabaseCard v-for="db in databases" :key="db.id" :database="db" />
       </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 py-10">
+      <AddDatabase />
     </div>
   </div>
 </template>

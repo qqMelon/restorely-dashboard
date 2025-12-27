@@ -27,22 +27,28 @@ function formatDuration(durationMs) {
     </div>
 
     <div class="space-y-3">
-      <div class="flex justify-between text-green-50">
+      <div
+        v-if="database.last_backup"
+        class="flex justify-between text-green-50"
+      >
         <span>Last backup</span>
         <StatusBadge :status="database.last_backup.status" />
       </div>
 
-      <div class="text-sm text-gray-400">
+      <div v-if="database.last_backup" class="text-sm text-gray-400">
         {{ formatDate(database.last_backup.created_at) }} ·
         {{ formatDuration(database.last_backup.duration_ms) }}
       </div>
 
-      <div class="flex justify-between mt-4 text-gray-50">
+      <div
+        v-if="database.last_restore_test"
+        class="flex justify-between mt-4 text-gray-50"
+      >
         <span>Last restore test</span>
         <StatusBadge :status="database.last_restore_test.status" />
       </div>
 
-      <div class="text-sm text-gray-400">
+      <div v-if="database.last_restore_test" class="text-sm text-gray-400">
         {{ formatDate(database.last_restore_test.created_at) }} ·
         {{ formatDuration(database.last_restore_test.duration_ms) }}
       </div>
